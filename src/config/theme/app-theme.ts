@@ -1,20 +1,22 @@
 import { StyleSheet } from 'react-native';
 
-export const appTheme = (colorScheme: 'light' | 'dark') =>
+export const appTheme = (colorScheme: 'light' | 'dark', isLandscape: boolean) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: colorScheme === 'dark' ? '#1C1B1F' : '#FEF7FF',
-      justifyContent: 'flex-end',
+      // flexDirection: isLandscape ? 'row' : 'column',
+      backgroundColor: colorScheme === 'dark' ? '#1C1B1F' : '#FFFFFF',
+      justifyContent: isLandscape ? 'space-between' : 'flex-end',
     },
 
     displayContainer: {
       paddingHorizontal: 24,
-      paddingVertical: 48,
+      paddingVertical: isLandscape ? 10 : 48,
       backgroundColor: colorScheme === 'dark' ? '#1C1B1F' : '#FFFFFF',
       alignItems: 'flex-end',
       borderBottomWidth: StyleSheet.hairlineWidth,
-      borderColor: colorScheme === 'dark' ? '#49454F' : '#E6E0E9',
+      borderColor: colorScheme === 'dark' ? '#49454F' : '#FFFFFF',
+      flex: isLandscape ? 0.3 : 0.9,
     },
 
     historyText: {
@@ -30,9 +32,18 @@ export const appTheme = (colorScheme: 'light' | 'dark') =>
     },
 
     displayText: {
-      fontSize: 64,
+      fontSize: isLandscape ? 48 : 64,
       color: colorScheme === 'dark' ? '#FFFFFF' : '#1C1B1F',
       fontWeight: '300',
+    },
+
+    keypadUpper: {
+      marginTop: isLandscape ? 0 : 'auto',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      padding: 12,
+      justifyContent: 'space-between',
+      alignItems: 'flex-start', 
     },
 
     keypad: {
@@ -40,6 +51,7 @@ export const appTheme = (colorScheme: 'light' | 'dark') =>
       flexWrap: 'wrap',
       padding: 12,
       justifyContent: 'space-between',
+      alignItems: 'flex-end', 
     },
 
     button: {
@@ -72,6 +84,14 @@ export const appTheme = (colorScheme: 'light' | 'dark') =>
       backgroundColor: colorScheme === 'dark' ? '#D0BCFF' : '#6750A4',
     },
 
+    buttonOther: {
+      width: '8%',
+      backgroundColor: colorScheme === 'dark' ? '#212121' : '#FFFFFF',
+      borderRadius: 100,
+      borderWidth: 0,
+      elevation: 0, 
+    },
+
     buttonTextAccent: {
       color: '#FFFFFF',
       fontSize: 26,
@@ -81,7 +101,7 @@ export const appTheme = (colorScheme: 'light' | 'dark') =>
     row: {
       flexDirection: 'row',
       justifyContent: 'center',
-      marginBottom: 10,
+      marginBottom: isLandscape ? 5 : 10,
       paddingHorizontal: 10,
     },
   });
